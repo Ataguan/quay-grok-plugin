@@ -111,12 +111,12 @@ class CardTests(unittest.TestCase):
             {
                 "title": "Saturday",
                 "source_ask": "Find a cafe",
-                "places": [{"name": "F\u00e1brica", "lat": 38.7, "lng": -9.1}],
+                "places": [{"name": "Fábrica", "lat": 38.7, "lng": -9.1}],
             },
         )
         self.assertEqual(card["type"], "places")
         self.assertEqual(card["source"], "Scout bot")
-        self.assertEqual(card["payload"][0]["name"], "F\u00e1brica")
+        self.assertEqual(card["payload"][0]["name"], "Fábrica")
         self.assertEqual(card["source_ask"], "Find a cafe")
 
     def test_calendar_requires_iso_dates(self):
