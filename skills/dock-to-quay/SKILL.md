@@ -13,21 +13,27 @@ Use the Quay MCP tools to POST one card to the user's Quay inbox. Quay is an iPh
 
 Post only when the user explicitly asks you to send, save, dock, or post something to Quay. Researching, planning, or drafting is not a request to post. Answer in the chat unless they ask for Quay.
 
-If `quay_status` says the connection is not configured, tell the user to export `QUAY_URL` and `QUAY_API_KEY` from Quay Settings and restart Grok. Do not search the filesystem, shell history, or `.env` files for a key, and do not invent a URL.
+If `quay_status` says the connection is not configured, tell the user to set `QUAY_URL` and `QUAY_API_KEY` from Quay Settings → Copy Connection (or API key) and restart Grok. Do not search the filesystem, shell history, or `.env` files for a key, and do not invent a URL.
+
+## Live instructions
+
+Call `get_contract` (or rely on `quay_status`) at the start of a session. Quay hosts the posting guide and `ui.catalog` on the ingest GET. Prefer that over any pasted catalog — formats change without the user re-pasting a prompt.
 
 ## Tools
 
 Call `quay_status` first when you are unsure the connection is configured.
 
-- `dock_places` — places to open in Maps. Each place needs `name`. Optional: `address`, `lat`, `lng`, `note`, `apple_maps_url`, `google_maps_url`.
-- `dock_calendar` — blocks to add to Calendar. Each event needs `title`, `starts_at`, and `ends_at` as ISO-8601 timestamps with a timezone offset. Optional: `location`, `notes`.
-- `dock_todos` — a checklist. Each item needs `text`. Optional: `id`, `done` (default false).
-- `dock_note` — one note. `body` is the text.
-- `dock_articles` — a reading list. Each article needs `title`. Optional: `url`, `publication`, `author`, `summary`, `body`, `read`, `images`, `links`, `attachments`, `references`. Use this when the user wants something to read or check later. Write the briefing in `body`.
+- `get_contract` — live instructions, `instructions_version`, and `ui.catalog`.
+- `dock_ui` — **default**. Compose a layout tree: `stack`, `split`, `text`, `markdown`, `list`, `item`, `todo_list`, `image`, `map`, `badge`, `board`, `column`. Pass `root` as the root node.
+- `dock_places` — simple places card (still supported).
+- `dock_calendar` — calendar blocks (still supported).
+- `dock_todos` — checklist card (prefer `todo_list` inside `dock_ui` when composing).
+- `dock_note` — one note (still supported).
+- `dock_articles` — reading list (still supported).
+
+Use specialty HTTP types `quiz`, `recipe`, or `memory` only when that interaction is clearly best (via curl/ingest if no MCP tool yet).
 
 Every dock tool takes `title` (the card title) and optional `summary` and `source_ask`. Put the user's latest message in `source_ask` verbatim.
-
-In note bodies, place notes, calendar notes, summaries, and article bodies you may use `**bold**`, `*italic*`, `++underline++`, and `~cursive~`.
 
 The sender name comes from `QUAY_SOURCE` when the user set it. Do not pass a source field yourself.
 
