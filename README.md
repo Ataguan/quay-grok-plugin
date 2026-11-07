@@ -1,6 +1,6 @@
 # Quay plugin for Grok Build
 
-This plugin connects [Grok Build](https://x.ai/build) to [Quay](https://github.com/Ataguan/quay), the iPhone app where agent results dock. There is no chat UI in Quay. When you ask Grok to send something to Quay, the bundled MCP server POSTs one card to your personal ingest endpoint. Cards show up on the iPhone as places, calendar blocks, todos, notes, or reading lists.
+This plugin connects [Grok Build](https://x.ai/build) to [Quay](https://github.com/Ataguan/quay), the iPhone app where agent results dock. There is no chat UI in Quay. When you ask Grok to send something to Quay, the bundled MCP server POSTs one card to your personal ingest endpoint. Cards show up on the iPhone as generative UI layouts by default, or as places, calendar blocks, todos, notes, or reading lists.
 
 Quay is not affiliated with xAI.
 
@@ -35,10 +35,10 @@ After this plugin is in the Grok Build marketplace:
 grok plugin install quay --trust
 ```
 
-Until then, install this directory from the Quay repo:
+Until then, install this repository locally:
 
 ```bash
-grok plugin install /path/to/quay/grok-plugin --trust
+grok plugin install /path/to/quay-grok-plugin --trust
 ```
 
 Python 3.9+ must already be on `PATH` (`python3`). The server uses the standard library only.
@@ -50,6 +50,8 @@ Restart Grok after exporting the variables so the MCP process inherits them. Ask
 | Tool | Card |
 | --- | --- |
 | `quay_status` | Checks that the URL and key are set, then GETs the contract. Never returns the key. |
+| `get_contract` | Live instructions, `instructions_version`, and `ui.catalog` |
+| `dock_ui` | Generative UI layout tree (**default**) |
 | `dock_places` | Places with name, address, coordinates, and note |
 | `dock_calendar` | Calendar blocks with ISO-8601 start and end |
 | `dock_todos` | Checklist items |
