@@ -1,7 +1,7 @@
 {
   "name": "quay",
-  "version": "1.0.0",
-  "description": "Dock places, days, todos, notes, and reading lists from Grok to the Quay iPhone app.",
+  "version": "1.1.0",
+  "description": "Dock generative UI (and places, days, todos, notes, reading lists) from Grok to the Quay iPhone app.",
   "author": {
     "name": "Quay",
     "url": "https://github.com/Ataguan/quay"
@@ -9,5 +9,11 @@
   "homepage": "https://github.com/Ataguan/quay-grok-plugin",
   "repository": "https://github.com/Ataguan/quay-grok-plugin",
   "license": "MIT",
-  "keywords": ["quay", "quay app", "dock to quay"]
+  "keywords": [
+    "quay",
+    "quay app",
+    "dock to quay",
+    "generative ui",
+    "mcp"
+  ]
 }
